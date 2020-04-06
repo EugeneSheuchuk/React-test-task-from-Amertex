@@ -16,7 +16,7 @@ const InputType = (props) => {
 };
 
 InputType.propTypes = {
-    type: PropTypes.string,
+    type: PropTypes.string.isRequired,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     action: PropTypes.func,
