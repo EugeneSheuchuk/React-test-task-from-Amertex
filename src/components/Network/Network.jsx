@@ -14,6 +14,7 @@ const Network = () => {
                 </div>
                 <div>
                     <p>Wireless Settings</p>
+
                 </div>
             </div>
             <div className={style.footer}>
