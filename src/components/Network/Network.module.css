@@ -1,0 +1,30 @@
+.container {
+    padding: 17px;
+    background-color: #f1f3f2;
+    width: 1316px;
+    height: 663px;
+}
+.nets {
+    border: 1px solid #bec1c3;
+    background-color: #ffffff;
+}
+.netsItem {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    padding: 20px 15px 0 15px;
+}
+
+.netsItem > p {
+    font-weight: bold;
+}
+
+.netsItem:last-child {
+    border-left: 1px solid #e0e4e7;
+    margin-left: -1px;
+}
+.footer {
+    background-color: #ffffff;
+    border: 1px solid #bec1c3;
+    margin-top: -1px;
+}

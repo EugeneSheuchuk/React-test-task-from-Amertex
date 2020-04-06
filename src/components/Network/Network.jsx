@@ -5,17 +5,18 @@ import DNS from '../DNS/DNS';
 import FieldWithSelect from '../FieldWithSelect/FieldWithSelect';
 import Checkbox from '../Checkbox/Checkbox';
 import Field from "../Field/Field";
+import Button from "../Button/Button";
 
 const Network = () => {
     return (
         <div className={style.container}>
             <div className={style.nets}>
-                <div>
+                <div className={style.netsItem}>
                     <p>Ethernet Settings</p>
                     <IP uniqueKey={'Ethernet_1'}/>
                     <DNS uniqueKey={'DNS_1'}/>
                 </div>
-                <div>
+                <div className={style.netsItem}>
                     <p>Wireless Settings</p>
                     <div>
                         <label htmlFor='enableWifi' className='container'>
@@ -44,6 +45,8 @@ const Network = () => {
                 </div>
             </div>
             <div className={style.footer}>
+                <Button value={'Save'} action={()=>{}}/>
+                <Button value={'Cancel'} action={()=>{}}/>
             </div>
         </div>
     );
