@@ -14,25 +14,18 @@ class IP extends React.Component {
         return (
             <React.Fragment>
                 <div className={style.choose}>
-                    <div className={style.item}>
-                        <RadioInput name={'automatically_DNS_address'}/>
-
-                    </div>
-                    <div className={style.item}>
-                        <label htmlFor="">
-                            Obtain an IP address automatically (DHCP/BootP)
-                        </label>
-                    </div>
+                    <label htmlFor={`AIP-${key}`} className='container'>
+                        Obtain an IP address automatically (DHCP/BootP)
+                        <RadioInput name={'automatically_IP'} id={`AIP-${key}`}/>
+                        <span className='checkmark'></span>
+                    </label>
                 </div>
                 <div className={style.choose}>
-                    <div className={style.item}>
-                        <RadioInput name={'use_IP_address'}/>
-                    </div>
-                    <div className={style.item}>
-                        <label htmlFor="">
-                            Use the following IP address:
-                        </label>
-                    </div>
+                    <label htmlFor={`SIP-${key}`} className='container'>
+                        Use the following IP address:
+                        <RadioInput name={'automatically_IP'} id={`SIP-${key}`}/>
+                        <span className='checkmark'></span>
+                    </label>
                 </div>
                 <Field fieldName={'DNS address:'} id={`IP_address_${key}`}
                        action={() => {

@@ -9,25 +9,16 @@ const DNS = (props) => {
     return (
         <React.Fragment>
             <div className={style.choose}>
-                <div className={style.item}>
-                    <RadioInput name={'automatically_DNS_server_address'}/>
-
-                </div>
-                <div className={style.item}>
-                    <label htmlFor="">
-                        Obtain DNS server address automatically
-                    </label>
-                </div>
+                <label htmlFor={`ADNS-${key}`}>Obtain DNS server address automatically
+                    <RadioInput name={'automatically_DNS_server'} id={`ADNS-${key}`}/>
+                    <span></span>
+                </label>
             </div>
             <div className={style.choose}>
-                <div className={style.item}>
-                    <RadioInput name={'use_DNS_server_address'}/>
-                </div>
-                <div className={style.item}>
-                    <label htmlFor="">
-                        Use the following DNS server address:
-                    </label>
-                </div>
+                <label htmlFor={`SDNS-${key}`}>Use the following DNS server address:
+                    <RadioInput name={'automatically_DNS_server'} id={`SDNS-${key}`}/>
+                    <span></span>
+                </label>
             </div>
             <Field fieldName={'Preferred DNS server:'} id={`P_DNS_server_${key}`}
                    action={() => {
