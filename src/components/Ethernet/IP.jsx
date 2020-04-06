@@ -1,10 +1,10 @@
 import React from 'react';
-import style from './Ethernet.module.css';
+import style from './IP.module.css';
 import PropTypes from "prop-types";
 import RadioInput from '../RadioInput/RadioInput';
 import Field from "../Field/Field";
 
-class Ethernet extends React.Component {
+class IP extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -52,8 +52,8 @@ class Ethernet extends React.Component {
     }
 }
 
-Ethernet.propTypes = {
+IP.propTypes = {
     key: PropTypes.string.isRequired,
 };
 
-export default Ethernet;
+export default IP;

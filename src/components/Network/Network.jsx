@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Network.module.css';
-import Ethernet from "../Ethernet/Ethernet";
+import IP from "../Ethernet/IP";
 
 const Network = () => {
     return (
@@ -8,7 +8,7 @@ const Network = () => {
             <div className={style.nets}>
                 <div>
                     <p>Ethernet Settings</p>
-                    <Ethernet key={'Ethernet_1'}/>
+                    <IP key={'Ethernet_1'}/>
                 </div>
                 <div>
                     <p>Wireless Settings</p>
