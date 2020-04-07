@@ -10,7 +10,7 @@ const InputType = (props) => {
     return <input type={type}
                   id={id}
                   value={value}
-                  onChange={(e) => action(e)}
+                  onChange={(e) => action(e, id)}
                   className={`${style[styleClassName]}`}
                   placeholder={placeholder}/>
 };
