@@ -59,8 +59,8 @@ const Network = () => {
             <div className={style.nets}>
                 <div className={style.netsItem}>
                     <p>Ethernet Settings</p>
-                    <IP uniqueKey={'Ethernet_1'}/>
-                    <DNS uniqueKey={'DNS_1'}/>
+                    <IP uniqueKey={'Ethernet'}/>
+                    <DNS uniqueKey={'Ethernet'}/>
                 </div>
                 <div className={style.netsItem}>
                     <p>Wireless Settings</p>
@@ -86,8 +86,8 @@ const Network = () => {
                         <Field fieldName={'Security Key:'} required={true}
                                value={state.securityKey} action={typeField}/>
                     </div>
-                    <IP uniqueKey={'Ethernet_2'}/>
-                    <DNS uniqueKey={'DNS_2'}/>
+                    <IP uniqueKey={'Wireless'}/>
+                    <DNS uniqueKey={'Wireless'}/>
                 </div>
             </div>
             <div className={style.footer}>
