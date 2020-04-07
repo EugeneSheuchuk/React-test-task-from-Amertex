@@ -15,31 +15,44 @@ const Network = () => {
         securityKey: '',
     });
 
-    const onChangeCheckbox = (id) => setState(prevState => {
-        const state = {...prevState};
+    const onChangeCheckbox = (id) => {
         switch (id) {
             case 'enableWifi':
-                state.enableWifi = !state.enableWifi;
-                return state;
+                setState(prevState => {
+                    const state = {...prevState};
+                    state.enableWifi = !state.enableWifi;
+                    return state;
+                });
+                break;
             case 'enableWifiSecurity':
-                state.enableWifiSecurity = !state.enableWifiSecurity;
-                return state;
+                setState(prevState => {
+                    const state = {...prevState};
+                    state.enableWifiSecurity = !state.enableWifiSecurity;
+                    return state;
+                });
+                break;
             default:
-                return prevState;
+                return;
         }
-    });
+    };
 
     const onChangeSelect = e => {
-        e.persist();
+        const networkName = e.target.value;
         setState(prevState => {
             const state = {...prevState};
-            state.networkName = e.target.value;
+            state.networkName = networkName;
             return state;
         });
     };
 
-
-    console.log('state', state);
+    const typeField = e => {
+        const securityKey = e.target.value;
+        setState(prevState => {
+            const state = {...prevState};
+            state.securityKey = securityKey;
+            return state;
+        });
+    };
 
     return (
         <div className={style.container}>
@@ -70,8 +83,8 @@ const Network = () => {
                                       checked={state.enableWifiSecurity}/>
                             <span className='checkmark'></span>
                         </label>
-                        <Field fieldName={'Security Key:'} required={true} action={() => {
-                        }}/>
+                        <Field fieldName={'Security Key:'} required={true}
+                               value={state.securityKey} action={typeField}/>
                     </div>
                     <IP uniqueKey={'Ethernet_2'}/>
                     <DNS uniqueKey={'DNS_2'}/>

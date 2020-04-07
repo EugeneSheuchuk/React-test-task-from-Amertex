@@ -19,7 +19,11 @@ const DNS = (props) => {
         switch (id) {
             case `P_DNS_server_${uniqueKey}`:
                 const pDNS = e.target.value;
-
+                setState(prevState => {
+                    const state = {...prevState};
+                    state.pDNS = pDNS;
+                    return state;
+                });
                 break;
             case `A_DNS_server_${uniqueKey}`:
                 const aDNS = e.target.value;
