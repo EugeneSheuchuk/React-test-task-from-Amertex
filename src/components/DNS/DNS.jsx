@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import style from './DNS.module.css';
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
@@ -25,7 +25,6 @@ const DNS = (props) => {
                 return;
         }
     };
-    console.log(props);
     return (
         <React.Fragment>
             <div className={style.choose}>

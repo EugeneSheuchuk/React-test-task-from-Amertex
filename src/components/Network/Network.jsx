@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import style from './Network.module.css';
 import IP from '../IP/IP';
 import DNS from '../DNS/DNS';
@@ -6,30 +6,19 @@ import FieldWithSelect from '../FieldWithSelect/FieldWithSelect';
 import Checkbox from '../Checkbox/Checkbox';
 import Field from "../Field/Field";
 import Button from "../Button/Button";
+import {connect} from "react-redux";
+import {onSaveData, saveNetFieldValue} from "../../redux/netReducer";
 
-const Network = () => {
-    const [state, setState] = useState({
-        enableWifi: false,
-        enableWifiSecurity: false,
-        networkName: '',
-        securityKey: '',
-    });
+const Network = (props) => {
+    const {enableWifi, enableWifiSecurity, securityKey} = props.propState;
 
     const onChangeCheckbox = (id) => {
         switch (id) {
             case 'enableWifi':
-                setState(prevState => {
-                    const state = {...prevState};
-                    state.enableWifi = !state.enableWifi;
-                    return state;
-                });
+                props.saveNetFieldValue('enableWifi', !enableWifi);
                 break;
             case 'enableWifiSecurity':
-                setState(prevState => {
-                    const state = {...prevState};
-                    state.enableWifiSecurity = !state.enableWifiSecurity;
-                    return state;
-                });
+                props.saveNetFieldValue('enableWifiSecurity', !enableWifiSecurity);
                 break;
             default:
                 return;
@@ -37,21 +26,13 @@ const Network = () => {
     };
 
     const onChangeSelect = e => {
-        const networkName = e.target.value;
-        setState(prevState => {
-            const state = {...prevState};
-            state.networkName = networkName;
-            return state;
-        });
+        const netName = e.target.value;
+        props.saveNetFieldValue('netName', netName);
     };
 
     const typeField = e => {
         const securityKey = e.target.value;
-        setState(prevState => {
-            const state = {...prevState};
-            state.securityKey = securityKey;
-            return state;
-        });
+        props.saveNetFieldValue('securityKey', securityKey);
     };
 
     return (
@@ -68,7 +49,7 @@ const Network = () => {
                         <label htmlFor='enableWifi' className='container'>
                             Enable wifi:
                             <Checkbox id={'enableWifi'} value={'enableWifi'}
-                                      name={'enableWifi'} action={onChangeCheckbox} checked={state.enableWifi}/>
+                                      name={'enableWifi'} action={onChangeCheckbox} checked={enableWifi}/>
                             <span className='checkmark'></span>
                         </label>
                     </div>
@@ -80,24 +61,35 @@ const Network = () => {
                             Enable wifi:
                             <Checkbox id={'enableWifiSecurity'} value={'enableWifiSecurity'}
                                       name={'enableWifiSecurity'} action={onChangeCheckbox}
-                                      checked={state.enableWifiSecurity}/>
+                                      checked={enableWifiSecurity}/>
                             <span className='checkmark'></span>
                         </label>
                         <Field fieldName={'Security Key:'} required={true}
-                               value={state.securityKey} action={typeField}/>
+                               value={securityKey} action={typeField}/>
                     </div>
                     <IP uniqueKey={'Wireless_IP'}/>
                     <DNS uniqueKey={'Wireless_DNS'}/>
                 </div>
             </div>
             <div className={style.footer}>
-                <Button value={'Save'} action={() => {
-                }}/>
-                <Button value={'Cancel'} action={() => {
-                }}/>
+                <Button value={'Save'} action={props.saveData}/>
+                <Button value={'Cancel'} action={() => {}}/>
             </div>
         </div>
     );
 };
 
-export default Network;
+const mapStateToProps = (state) => ({propState: state.NET});
+
+const mapDispatchToProps = dispatch => {
+    return {
+        saveNetFieldValue(field, value) {
+            dispatch(saveNetFieldValue(field, value));
+        },
+        saveData() {
+          dispatch(onSaveData());
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Network);
