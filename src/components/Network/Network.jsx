@@ -11,6 +11,8 @@ const Network = () => {
     const [state, setState] = useState({
         enableWifi: false,
         enableWifiSecurity: false,
+        networkName: '',
+        securityKey: '',
     });
 
     const onChangeCheckbox = (id) => setState(prevState => {
@@ -26,6 +28,18 @@ const Network = () => {
                 return prevState;
         }
     });
+
+    const onChangeSelect = e => {
+        e.persist();
+        setState(prevState => {
+            const state = {...prevState};
+            state.networkName = e.target.value;
+            return state;
+        });
+    };
+
+
+    console.log('state', state);
 
     return (
         <div className={style.container}>
@@ -47,7 +61,7 @@ const Network = () => {
                     </div>
                     <FieldWithSelect fieldName={'Wireless Network Name:'} required={true}
                                      options={['Please select', 'Free net', 'Cool closed net']}
-                                     uniqueKey={'Nets'}/>
+                                     uniqueKey={'Nets'} action={onChangeSelect}/>
                     <div>
                         <label htmlFor='enableWifiSecurity' className='container'>
                             Enable wifi:

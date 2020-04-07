@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 
 const Select = (props) => {
-    const {options, id} = props;
+    const {options, id, action} = props;
     const viewOptions = options.map((item, index) => {
         return <option value={item} key={`${item}_${index}`}>{item}</option>
     });
 
-    return <select id={id}>
+    return <select id={id} onChange={e => action(e)}>
         {viewOptions}
     </select>
 };
@@ -17,6 +17,7 @@ const Select = (props) => {
 Select.propTypes = {
     options: PropTypes.array,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.oneOf([null])]),
+    action: PropTypes.func,
 };
 
 export default Select;
