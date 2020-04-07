@@ -39,7 +39,6 @@ class IP extends React.Component {
 
     render() {
         const {uniqueKey} = this.props;
-        console.log(`this-${uniqueKey}`, this.state);
 
         return (
             <React.Fragment>
