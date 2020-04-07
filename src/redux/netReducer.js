@@ -1,3 +1,5 @@
+import {prepareData} from "../assets/helperFunctions";
+
 const initialState = {
     enableWifi: false,
     enableWifiSecurity: false,
@@ -23,7 +25,9 @@ export const saveNetFieldValue = (field, value) => ({type: SAVE_FIELD_VALUE, fie
 
 export const onSaveData = () => {
     return (dispatch, getState ) => {
-        console.log('state', getState());
+        //console.log('state ', getState());
+        const result = prepareData(getState());
+        console.log('result ', result);
     }
 };
 

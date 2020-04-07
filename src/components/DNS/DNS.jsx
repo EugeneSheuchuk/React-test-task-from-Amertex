@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import style from './DNS.module.css';
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
@@ -7,6 +7,8 @@ import Field from "../Field/Field";
 import {saveFieldValue} from "../../redux/dnsReducer";
 
 const DNS = (props) => {
+    useEffect(() => props.saveDNSFieldValue(props.uniqueKey, 'AutoDNS', true), []);
+
     const {uniqueKey} = props;
     const {AutoDNS, pDNS, aDNS} = props.propState;
 
@@ -41,9 +43,9 @@ const DNS = (props) => {
                     <span></span>
                 </label>
             </div>
-            <Field fieldName={'Preferred DNS server:'} id={`P_DNS_server_${uniqueKey}`} value={pDNS}
+            <Field type='text' fieldName={'Preferred DNS server:'} id={`P_DNS_server_${uniqueKey}`} value={pDNS}
                    action={typeField} required={true}/>
-            <Field fieldName={'Alternative DNS server:'} id={`A_DNS_server_${uniqueKey}`} value={aDNS}
+            <Field type='text' fieldName={'Alternative DNS server:'} id={`A_DNS_server_${uniqueKey}`} value={aDNS}
                    action={typeField} required={false}/>
         </React.Fragment>
     );

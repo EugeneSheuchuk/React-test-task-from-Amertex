@@ -27,7 +27,7 @@ const Network = (props) => {
 
     const onChangeSelect = e => {
         const netName = e.target.value;
-        props.saveNetFieldValue('netName', netName);
+        props.saveNetFieldValue('networkName', netName);
     };
 
     const typeField = e => {
@@ -64,7 +64,7 @@ const Network = (props) => {
                                       checked={enableWifiSecurity}/>
                             <span className='checkmark'></span>
                         </label>
-                        <Field fieldName={'Security Key:'} required={true}
+                        <Field type='password' fieldName={'Security Key:'} required={true}
                                value={securityKey} action={typeField}/>
                     </div>
                     <IP uniqueKey={'Wireless_IP'}/>

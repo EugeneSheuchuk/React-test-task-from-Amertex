@@ -8,6 +8,11 @@ import {onSaveFieldValue} from "../../redux/ipReducer";
 
 class IP extends React.Component {
 
+    componentDidMount(props) {
+        //initialize redux state
+        this.props.saveFieldValue(this.props.uniqueKey, 'automaticallyIP', true);
+    }
+
     onClickRadio = (bool) => this.props.saveFieldValue(this.props.uniqueKey, 'automaticallyIP', bool);
 
     typeField = (e, id) => {
@@ -55,11 +60,11 @@ class IP extends React.Component {
                         <span className='checkmark'></span>
                     </label>
                 </div>
-                <Field fieldName={'IP address:'} id={`IP_address_${uniqueKey}`}
+                <Field type='text' fieldName={'IP address:'} id={`IP_address_${uniqueKey}`}
                        value={IPaddress} action={this.typeField} required={true}/>
-                <Field fieldName={'Subnet Mask:'} id={`Subnet_Mask_${uniqueKey}`}
+                <Field type='text' fieldName={'Subnet Mask:'} id={`Subnet_Mask_${uniqueKey}`}
                        value={subnetMask} action={this.typeField} required={true}/>
-                <Field fieldName={'Default Gateway:'} id={`Default_Gateway_${uniqueKey}`}
+                <Field type='text' fieldName={'Default Gateway:'} id={`Default_Gateway_${uniqueKey}`}
                        value={gateway} action={this.typeField} required={false}/>
             </React.Fragment>
         );
