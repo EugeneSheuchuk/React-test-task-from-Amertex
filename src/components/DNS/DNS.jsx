@@ -7,6 +7,7 @@ import Field from "../Field/Field";
 import {saveFieldValue} from "../../redux/dnsReducer";
 
 const DNS = (props) => {
+    //initialize redux state
     useEffect(() => props.saveDNSFieldValue(props.uniqueKey, 'AutoDNS', true), []);
 
     const {uniqueKey} = props;
@@ -17,11 +18,11 @@ const DNS = (props) => {
         switch (id) {
             case `P_DNS_server_${uniqueKey}`:
                 const pDNS = e.target.value;
-                props.saveDNSFieldValue(uniqueKey, 'pDNS', pDNS);
+                props.saveDNSFieldValue(uniqueKey, 'pDNS', pDNS.trim());
                 break;
             case `A_DNS_server_${uniqueKey}`:
                 const aDNS = e.target.value;
-                props.saveDNSFieldValue(uniqueKey, 'aDNS', aDNS);
+                props.saveDNSFieldValue(uniqueKey, 'aDNS', aDNS.trim());
                 break;
             default:
                 return;

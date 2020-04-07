@@ -1,4 +1,4 @@
-import {prepareData} from "../assets/helperFunctions";
+import {checkData, prepareData} from "../assets/helperFunctions";
 
 const initialState = {
     enableWifi: false,
@@ -24,10 +24,12 @@ const netReducer = (state = initialState, action) => {
 export const saveNetFieldValue = (field, value) => ({type: SAVE_FIELD_VALUE, field, value});
 
 export const onSaveData = () => {
-    return (dispatch, getState ) => {
+    return (dispatch, getState) => {
         //console.log('state ', getState());
+        const error = checkData(getState());
+        console.log('error ', error);
         const result = prepareData(getState());
-        console.log('result ', result);
+        //console.log('result ', result);
     }
 };
 

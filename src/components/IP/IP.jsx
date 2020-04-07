@@ -16,20 +16,19 @@ class IP extends React.Component {
     onClickRadio = (bool) => this.props.saveFieldValue(this.props.uniqueKey, 'automaticallyIP', bool);
 
     typeField = (e, id) => {
-        e.stopPropagation();
         const {uniqueKey} = this.props;
         switch (id) {
             case `IP_address_${uniqueKey}`:
                 const ip = e.target.value;
-                this.props.saveFieldValue(uniqueKey, 'IPaddress', ip);
+                this.props.saveFieldValue(uniqueKey, 'IPaddress', ip.trim());
                 break;
             case `Subnet_Mask_${uniqueKey}`:
                 const subnet = e.target.value;
-                this.props.saveFieldValue(uniqueKey, 'subnetMask', subnet);
+                this.props.saveFieldValue(uniqueKey, 'subnetMask', subnet.trim());
                 break;
             case `Default_Gateway_${uniqueKey}`:
                 const gateway = e.target.value;
-                this.props.saveFieldValue(uniqueKey, 'gateway', gateway);
+                this.props.saveFieldValue(uniqueKey, 'gateway', gateway.trim());
                 break;
             default:
                 return;
