@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import InputType from "../InputType/InputType";
 
 const Field = (props) => {
-    const {fieldName, id = null, action, required = false, styleClassName} = props;
+    const {fieldName, id = null, value, action, required = false, styleClassName} = props;
     const text = `${fieldName}${required ? ' *' : ''}`;
     return (
         <div className={style.field}>
@@ -12,7 +12,7 @@ const Field = (props) => {
                 <label htmlFor={id} className={style[styleClassName]}>{text}</label>
             </div>
             <div>
-                <InputType type={'text'} id={id} action={action}/>
+                <InputType type={'text'} id={id} value={value} action={action}/>
             </div>
         </div>
     );
@@ -21,6 +21,7 @@ const Field = (props) => {
 Field.propTypes = {
     fieldName: PropTypes.string.isRequired,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.oneOf([null])]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     action: PropTypes.func,
     required: PropTypes.bool,
     styleClassName: PropTypes.string,

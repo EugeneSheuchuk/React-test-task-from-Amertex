@@ -1,36 +1,30 @@
 import React from 'react';
 import style from './IP.module.css';
 import PropTypes from "prop-types";
+import {connect} from 'react-redux';
 import RadioInput from '../RadioInput/RadioInput';
 import Field from "../Field/Field";
+import {onSaveFieldValue} from "../../redux/ipReducer";
 
 class IP extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            automaticallyIP: true,
-            IPaddress: '',
-            subnetMask: '',
-            gateway: '',
-        };
-    }
 
-    onClickRadio = (bool) => this.setState({automaticallyIP: bool});
+    onClickRadio = (bool) => this.props.saveFieldValue(this.props.uniqueKey, 'automaticallyIP', bool);
 
     typeField = (e, id) => {
+        e.stopPropagation();
         const {uniqueKey} = this.props;
         switch (id) {
             case `IP_address_${uniqueKey}`:
                 const ip = e.target.value;
-                this.setState({IPaddress: ip});
+                this.props.saveFieldValue(uniqueKey, 'IPaddress', ip);
                 break;
             case `Subnet_Mask_${uniqueKey}`:
                 const subnet = e.target.value;
-                this.setState({subnetMask: subnet});
+                this.props.saveFieldValue(uniqueKey, 'subnetMask', subnet);
                 break;
             case `Default_Gateway_${uniqueKey}`:
                 const gateway = e.target.value;
-                this.setState({gateway});
+                this.props.saveFieldValue(uniqueKey, 'gateway', gateway);
                 break;
             default:
                 return;
@@ -39,6 +33,7 @@ class IP extends React.Component {
 
     render() {
         const {uniqueKey} = this.props;
+        const {automaticallyIP, IPaddress, subnetMask, gateway} = this.props.propState;
 
         return (
             <React.Fragment>
@@ -46,7 +41,8 @@ class IP extends React.Component {
                     <label htmlFor={`AIP-${uniqueKey}`} className='container'>
                         Obtain an IP address automatically (DHCP/BootP)
                         <RadioInput id={`AIP-${uniqueKey}`}
-                                    value={true} action={this.onClickRadio} checked={this.state.automaticallyIP}/>
+                                    value={true} action={this.onClickRadio}
+                                    checked={automaticallyIP}/>
                         <span className='checkmark'></span>
                     </label>
                 </div>
@@ -54,23 +50,42 @@ class IP extends React.Component {
                     <label htmlFor={`SIP-${uniqueKey}`} className='container'>
                         Use the following IP address:
                         <RadioInput id={`SIP-${uniqueKey}`}
-                                    value={false} action={this.onClickRadio} checked={!this.state.automaticallyIP}/>
+                                    value={false} action={this.onClickRadio}
+                                    checked={!automaticallyIP}/>
                         <span className='checkmark'></span>
                     </label>
                 </div>
                 <Field fieldName={'IP address:'} id={`IP_address_${uniqueKey}`}
-                       action={this.typeField} required={true}/>
+                       value={IPaddress} action={this.typeField} required={true}/>
                 <Field fieldName={'Subnet Mask:'} id={`Subnet_Mask_${uniqueKey}`}
-                       action={this.typeField} required={true}/>
+                       value={subnetMask} action={this.typeField} required={true}/>
                 <Field fieldName={'Default Gateway:'} id={`Default_Gateway_${uniqueKey}`}
-                       action={this.typeField} required={false}/>
+                       value={gateway} action={this.typeField} required={false}/>
             </React.Fragment>
         );
     }
 }
 
+const mapStateToProps = (state, ownProps) => {
+    const initial = {
+        automaticallyIP: true,
+        IPaddress: '',
+        subnetMask: '',
+        gateway: '',
+    };
+    return {propState: state.IP[ownProps.uniqueKey] || initial,}
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        saveFieldValue(key, field, value) {
+            dispatch(onSaveFieldValue(key, field, value));
+        }
+    };
+};
+
 IP.propTypes = {
     uniqueKey: PropTypes.string.isRequired,
 };
 
-export default IP;
+export default connect(mapStateToProps, mapDispatchToProps)(IP);
