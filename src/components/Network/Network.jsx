@@ -7,7 +7,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import Field from "../Field/Field";
 import Button from "../Button/Button";
 import {connect} from "react-redux";
-import {onClearData, onSaveData, saveNetFieldValue} from "../../redux/netReducer";
+import {onClearData, onSaveData, saveFieldValue} from "../../redux/netReducer";
 
 const Network = (props) => {
     const {enableWifi, enableWifiSecurity, securityKey, networkName} = props.propState;
@@ -22,10 +22,10 @@ const Network = (props) => {
     const onChangeCheckbox = (id) => {
         switch (id) {
             case 'enableWifi':
-                props.saveNetFieldValue('enableWifi', !enableWifi);
+                props.saveNetFieldValue('NET','enableWifi', !enableWifi);
                 break;
             case 'enableWifiSecurity':
-                props.saveNetFieldValue('enableWifiSecurity', !enableWifiSecurity);
+                props.saveNetFieldValue('NET','enableWifiSecurity', !enableWifiSecurity);
                 break;
             default:
                 return;
@@ -34,12 +34,12 @@ const Network = (props) => {
 
     const onChangeSelect = e => {
         const netName = e.target.value;
-        props.saveNetFieldValue('networkName', netName);
+        props.saveNetFieldValue('NET','networkName', netName);
     };
 
     const typeField = e => {
         const securityKey = e.target.value;
-        props.saveNetFieldValue('securityKey', securityKey);
+        props.saveNetFieldValue('NET','securityKey', securityKey);
     };
 
     const disabledStyle = !enableWifi ? 'disabledLabel' : '';
@@ -96,8 +96,8 @@ const mapStateToProps = (state) => ({propState: state.NET});
 
 const mapDispatchToProps = dispatch => {
     return {
-        saveNetFieldValue(field, value) {
-            dispatch(saveNetFieldValue(field, value));
+        saveNetFieldValue(key, field, value) {
+            dispatch(saveFieldValue(key,field, value));
         },
         saveData() {
             dispatch(onSaveData());

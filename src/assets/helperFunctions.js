@@ -27,37 +27,41 @@ export const checkData = (state) => {
 };
 
 export const prepareData = (state) => {
+    let copy = {...state};
+    const stringCopy = JSON.stringify(copy);
+    copy = JSON.parse(stringCopy);
+    deleteErrorProperty(copy);
     let result = {ethernet: {}, wireless: {}};
-    if (!state.IP['Ethernet_IP'].automaticallyIP) {
-        result.ethernet = {...state.IP['Ethernet_IP']};
+    if (!copy.IP['Ethernet_IP'].automaticallyIP) {
+        result.ethernet = {...copy.IP['Ethernet_IP']};
     } else {
-        result.ethernet = {automaticallyIP: state.IP['Ethernet_IP'].automaticallyIP};
+        result.ethernet = {automaticallyIP: copy.IP['Ethernet_IP'].automaticallyIP};
     }
-    if (!state.DNS['Ethernet_DNS'].AutoDNS) {
-        result.ethernet = {...result.ethernet, ...state.DNS['Ethernet_DNS']};
+    if (!copy.DNS['Ethernet_DNS'].AutoDNS) {
+        result.ethernet = {...result.ethernet, ...copy.DNS['Ethernet_DNS']};
     } else {
-        result.ethernet = {...result.ethernet, AutoDNS: state.DNS['Ethernet_DNS'].AutoDNS};
+        result.ethernet = {...result.ethernet, AutoDNS: copy.DNS['Ethernet_DNS'].AutoDNS};
     }
-    if (!state.NET.enableWifi) {
+    if (!copy.NET.enableWifi) {
         result.wireless = {enableWifi: false};
     } else {
-        result.wireless = {enableWifi: true, networkName: state.NET.networkName};
-        if (!state.IP['Wireless_IP'].automaticallyIP) {
-            result.wireless = {...result.wireless, ...state.IP['Wireless_IP']};
+        result.wireless = {enableWifi: true, networkName: copy.NET.networkName};
+        if (!copy.IP['Wireless_IP'].automaticallyIP) {
+            result.wireless = {...result.wireless, ...copy.IP['Wireless_IP']};
         } else {
             result.wireless = {...result.wireless, automaticallyIP: true};
         }
-        if (!state.DNS['Wireless_DNS'].AutoDNS) {
-            result.wireless = {...result.wireless, ...state.DNS['Wireless_DNS']};
+        if (!copy.DNS['Wireless_DNS'].AutoDNS) {
+            result.wireless = {...result.wireless, ...copy.DNS['Wireless_DNS']};
         } else {
             result.wireless = {...result.wireless, AutoDNS: true};
         }
-        if (!state.NET.enableWifiSecurity) {
-            result.wireless = {...result.wireless, enableWifiSecurity: state.NET.enableWifiSecurity};
+        if (!copy.NET.enableWifiSecurity) {
+            result.wireless = {...result.wireless, enableWifiSecurity: copy.NET.enableWifiSecurity};
         } else {
             result.wireless = {
-                ...result.wireless, enableWifiSecurity: state.NET.enableWifiSecurity,
-                securityKey: state.NET.securityKey
+                ...result.wireless, enableWifiSecurity: copy.NET.enableWifiSecurity,
+                securityKey: copy.NET.securityKey
             };
         }
     }
@@ -116,6 +120,17 @@ function checkDNS(obj) {
     return errorObj;
 }
 
+function deleteErrorProperty(obj) {
+    for (let key in obj) {
+        if (obj[key] instanceof Object) {
+            deleteErrorProperty(obj[key]);
+        }
+        if (key.indexOf('error') !== -1) {
+            delete obj[key];
+        }
+    }
+}
+
 const keys = ['Ethernet_IP', 'Ethernet_DNS', 'Wireless_IP', 'Wireless_DNS', 'NET'];
 export const CLEAR_ERROR_TEXT = 'omertex-react/helperFunctions/CLEAR_ERROR_TEXT';
 export const CLEAR_REDUCER_TEXT = 'omertex-react/helperFunctions/CLEAR_REDUCER_TEXT';
@@ -127,3 +142,4 @@ export function clearErrorMessages(dispatch) {
 export function clearReducersData(dispatch) {
     keys.forEach(item => dispatch({type: CLEAR_REDUCER_TEXT, key: item}));
 }
+

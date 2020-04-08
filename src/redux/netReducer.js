@@ -15,17 +15,20 @@ const initialState = {
     errorSecurityKey: '',
 };
 
-const SAVE_FIELD_VALUE = 'omertex-react/netReducer/SAVE_FIELD_VALUE';
+export const SAVE_FIELD_VALUE = 'omertex-react/netReducer/SAVE_FIELD_VALUE';
 export const SAVE_ERROR_TEXT = 'omertex-react/netReducer/SAVE_ERROR_TEXT';
 
 
 const netReducer = (state = initialState, action) => {
     switch (action.type) {
         case SAVE_FIELD_VALUE:
-            return {
-                ...state,
-                [action.field]: action.value,
-            };
+            if (action.key === 'NET') {
+                return {
+                    ...state,
+                    [action.field]: action.value,
+                };
+            }
+            return state;
         case SAVE_ERROR_TEXT:
             if (action.key === 'NET') {
                 return {
@@ -53,7 +56,7 @@ const netReducer = (state = initialState, action) => {
     }
 };
 
-export const saveNetFieldValue = (field, value) => ({type: SAVE_FIELD_VALUE, field, value});
+export const saveFieldValue = (key, field, value) => ({type: SAVE_FIELD_VALUE, key, field, value});
 
 export const onSaveData = () => {
     return (dispatch, getState) => {

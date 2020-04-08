@@ -1,5 +1,5 @@
 import {CLEAR_ERROR_TEXT, CLEAR_REDUCER_TEXT} from "../assets/helperFunctions";
-import {SAVE_ERROR_TEXT} from "./netReducer";
+import {SAVE_ERROR_TEXT, SAVE_FIELD_VALUE} from "./netReducer";
 
 const initialState = {};
 const template = {
@@ -10,7 +10,7 @@ const template = {
     erroraDNS: '',
 };
 
-const SAVE_FIELD_VALUE = 'omertex-react/dnsReducer/SAVE_FIELD_VALUE';
+//const SAVE_FIELD_VALUE = 'omertex-react/dnsReducer/SAVE_FIELD_VALUE';
 
 
 const dnsReducer = (state = initialState, action) => {
@@ -54,7 +54,7 @@ const dnsReducer = (state = initialState, action) => {
     }
 };
 
-export const saveFieldValue = (key, field, value) => ({type: SAVE_FIELD_VALUE, key, field, value});
+//export const saveFieldValue = (key, field, value) => ({type: SAVE_FIELD_VALUE, key, field, value});
 
 
 export default dnsReducer;

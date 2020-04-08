@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import RadioInput from '../RadioInput/RadioInput';
 import Field from "../Field/Field";
-import {saveFieldValue} from "../../redux/dnsReducer";
+import {saveFieldValue} from "../../redux/netReducer";
 
 const DNS = (props) => {
     //initialize redux state

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import RadioInput from '../RadioInput/RadioInput';
 import Field from "../Field/Field";
-import {onSaveFieldValue} from "../../redux/ipReducer";
+import {saveFieldValue} from "../../redux/netReducer";
 
 class IP extends React.Component {
 
@@ -97,7 +97,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
     return {
         saveFieldValue(key, field, value) {
-            dispatch(onSaveFieldValue(key, field, value));
+            dispatch(saveFieldValue(key, field, value));
         }
     };
 };
