@@ -35,8 +35,11 @@ class IP extends React.Component {
         }
     };
 
+
+
+
     render() {
-        const {uniqueKey} = this.props;
+        const {uniqueKey, disabled} = this.props;
         const {automaticallyIP, IPaddress, subnetMask, gateway} = this.props.propState;
         let {errorIPaddress, errorSubnetMask, errorGateway} = this.props.propState;
         if (automaticallyIP) {
@@ -44,19 +47,22 @@ class IP extends React.Component {
             errorSubnetMask = '';
             errorGateway = '';
         }
+        const disabledStyle = disabled ? 'disabledLabel' : '';
+
         return (
             <React.Fragment>
                 <div className={style.choose}>
-                    <label htmlFor={`AIP-${uniqueKey}`} className='container'>
+                    <label htmlFor={`AIP-${uniqueKey}`} className={`${style['container']} ${style[disabledStyle]}`}>
                         Obtain an IP address automatically (DHCP/BootP)
                         <RadioInput id={`AIP-${uniqueKey}`}
                                     value={true} action={this.onClickRadio}
-                                    checked={automaticallyIP}/>
+                                    checked={automaticallyIP}
+                                    disabled={disabled}/>
                         <span className='checkmark'></span>
                     </label>
                 </div>
                 <div className={style.choose}>
-                    <label htmlFor={`SIP-${uniqueKey}`} className='container'>
+                    <label htmlFor={`SIP-${uniqueKey}`} className={`${style['container']} ${style[disabledStyle]}`}>
                         Use the following IP address:
                         <RadioInput id={`SIP-${uniqueKey}`}
                                     value={false} action={this.onClickRadio}
@@ -65,11 +71,14 @@ class IP extends React.Component {
                     </label>
                 </div>
                 <Field type='text' fieldName={'IP address:'} id={`IP_address_${uniqueKey}`}
-                       value={IPaddress} action={this.typeField} required={true} errorText={errorIPaddress}/>
+                       value={IPaddress} action={this.typeField} required={true}
+                       errorText={errorIPaddress} disabled = {automaticallyIP}/>
                 <Field type='text' fieldName={'Subnet Mask:'} id={`Subnet_Mask_${uniqueKey}`}
-                       value={subnetMask} action={this.typeField} required={true} errorText={errorSubnetMask}/>
+                       value={subnetMask} action={this.typeField} required={true}
+                       errorText={errorSubnetMask} disabled = {automaticallyIP}/>
                 <Field type='text' fieldName={'Default Gateway:'} id={`Default_Gateway_${uniqueKey}`}
-                       value={gateway} action={this.typeField} required={false} errorText={errorGateway}/>
+                       value={gateway} action={this.typeField} required={false}
+                       errorText={errorGateway} disabled = {automaticallyIP}/>
             </React.Fragment>
         );
     }
@@ -95,6 +104,7 @@ const mapDispatchToProps = dispatch => {
 
 IP.propTypes = {
     uniqueKey: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(IP);

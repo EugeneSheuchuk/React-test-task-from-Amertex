@@ -8,17 +8,19 @@ import {faRedoAlt} from '@fortawesome/free-solid-svg-icons'
 const FieldWithSelect = (props) => {
     const {
         fieldName, id = null, required = false, options, value,
-        styleClassName, uniqueKey, action, errorText = ''
+        styleClassName, uniqueKey, action, errorText = '', disabled
     } = props;
     const text = `${fieldName}${required ? ' *' : ''}`;
+    const disabledStyle = disabled ? 'disabledLabel' : '';
+
     return (
         <div className={style.field}>
             <div className={style.fieldName}>
-                <label htmlFor={id} className={style[styleClassName]}>{text}</label>
+                <label htmlFor={id} className={`${style[styleClassName]} ${style[disabledStyle]}`}>{text}</label>
             </div>
             <div>
                 <Select id={id} options={options} value={value}
-                        key={uniqueKey} action={action}/>
+                        key={uniqueKey} action={action} disabled={disabled}/>
                 <p>{errorText}</p>
             </div>
             <div>
@@ -38,6 +40,7 @@ FieldWithSelect.propTypes = {
     uniqueKey: PropTypes.string.isRequired,
     action: PropTypes.func,
     errorText: PropTypes.string,
+    disabled: PropTypes.bool,
 };
 
 export default FieldWithSelect;

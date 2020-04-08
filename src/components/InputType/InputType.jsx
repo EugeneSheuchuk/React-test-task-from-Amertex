@@ -4,13 +4,17 @@ import PropTypes from 'prop-types';
 
 
 const InputType = (props) => {
-    const {type = 'text', id, value, action, styleClassName, placeholder = null} = props;
+    const {
+        type = 'text', id, value, action, styleClassName,
+        placeholder = null, disabled = false
+    } = props;
     return <input type={type}
                   id={id}
                   value={value}
                   onChange={(e) => action(e, id)}
                   className={`${style[styleClassName]}`}
-                  placeholder={placeholder}/>
+                  placeholder={placeholder}
+                  disabled={disabled}/>
 };
 
 InputType.propTypes = {
@@ -20,6 +24,7 @@ InputType.propTypes = {
     action: PropTypes.func,
     styleClassName: PropTypes.string,
     placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
+    disabled: PropTypes.bool,
 };
 
 export default InputType;

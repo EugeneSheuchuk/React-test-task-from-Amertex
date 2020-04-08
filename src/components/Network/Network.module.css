@@ -28,3 +28,8 @@
     border: 1px solid #bec1c3;
     margin-top: -1px;
 }
+
+.disabledLabel {
+    color: gray;
+    opacity: 0.5;
+}
