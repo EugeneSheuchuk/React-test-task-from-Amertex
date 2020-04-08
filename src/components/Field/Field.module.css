@@ -2,3 +2,28 @@
     color: gray;
     opacity: 0.5;
 }
+.fieldItem {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.fieldName {
+    text-align: right;
+    width: 43%;
+    font-size: 14px;
+}
+
+.fieldBox {
+    width: 57%;
+    padding-left: 15px;
+}
+.fieldBox input {
+    height: 35px;
+    width: 100%;
+    border: 1px solid #d6d7e0;
+    background-color: white;
+}
+.red {
+    color: red;
+}

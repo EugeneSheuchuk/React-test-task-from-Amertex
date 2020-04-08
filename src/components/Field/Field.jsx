@@ -7,15 +7,18 @@ const Field = (props) => {
     const {
         type, fieldName, id = null, value, action, required = false,
         styleClassName, errorText = '', disabled} = props;
-    const text = `${fieldName}${required ? ' *' : ''}`;
+    const star = required ? <span className={style.red}> *</span> : null;
     const disabledStyle = disabled ? 'disabledLabel' : '';
     return (
         <div className={style.field}>
-            <div className={style.fieldName}>
+            <div className={`${style.fieldName} ${style.fieldItem}`}>
                 <label htmlFor={id}
-                       className={`${style[styleClassName]} ${style[disabledStyle]}`}>{text}</label>
+                       className={`${style[styleClassName]} ${style[disabledStyle]}`}>
+                    {fieldName}
+                    {star}
+                </label>
             </div>
-            <div>
+            <div className={`${style.fieldBox} ${style.fieldItem}`}>
                 <InputType type={type} id={id} value={value}
                            action={action} disabled={disabled}/>
                 <p className={style.errorText}>{errorText}</p>

@@ -1,8 +1,3 @@
-.disabledLabel {
-    color: gray;
-    opacity: 0.5;
-}
-
 .labelContainer {
     display: block;
     position: relative;
@@ -62,4 +57,10 @@
     height: 8px;
     border-radius: 50%;
     background: white;
+}
+
+.disabledLabel {
+    color: gray;
+    opacity: 0.5;
+    cursor: initial;
 }
