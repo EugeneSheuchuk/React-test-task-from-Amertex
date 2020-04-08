@@ -60,7 +60,7 @@ const Network = (props) => {
                             Enable wifi:
                             <Checkbox id={'enableWifi'} value={'enableWifi'}
                                       name={'enableWifi'} action={onChangeCheckbox} checked={enableWifi}/>
-                            <span className='checkmark'></span>
+                            <span className={style.checkmark}></span>
                         </label>
                     </div>
                     <FieldWithSelect fieldName={'Wireless Network Name:'} required={true}
@@ -74,7 +74,7 @@ const Network = (props) => {
                             <Checkbox id={'enableWifiSecurity'} value={'enableWifiSecurity'}
                                       name={'enableWifiSecurity'} action={onChangeCheckbox}
                                       checked={enableWifiSecurity} disabled={disabledCheckbox}/>
-                            <span className='checkmark'></span>
+                            <span className={style.checkmark}></span>
                         </label>
                         <Field type='password' fieldName={'Security Key:'} required={true}
                                value={securityKey} action={typeField}
