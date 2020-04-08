@@ -1,5 +1,9 @@
 @keyframes arrow { 0% {transform:rotate(0deg)}100% { transform:rotate(360deg); } }
 
+.field {
+    margin-bottom: 10px;
+}
+
 .disabledLabel {
     color: gray;
     opacity: 0.5;
@@ -30,6 +34,10 @@
 .fieldSelect select:disabled {
     opacity: 0.5;
     border-color: #d6d7e0;
+}
+
+.errorStyle select {
+    border-color: lightcoral;
 }
 
 .fieldArrow {
@@ -63,4 +71,11 @@
 }
 .red {
     color: red;
+}
+
+.error {
+    font-size: 14px;
+    padding: 5px 12% 0 0;
+    color: lightcoral;
+    text-align: right;
 }

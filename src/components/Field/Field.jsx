@@ -9,6 +9,8 @@ const Field = (props) => {
         styleClassName, errorText = '', disabled} = props;
     const star = required ? <span className={style.red}> *</span> : null;
     const disabledStyle = disabled ? 'disabledLabel' : '';
+    const errorStyle = errorText !== '' ? 'errorStyle' : '';
+
     return (
         <div className={style.field}>
             <div className={`${style.fieldName} ${style.fieldItem}`}>
@@ -18,7 +20,7 @@ const Field = (props) => {
                     {star}
                 </label>
             </div>
-            <div className={`${style.fieldBox} ${style.fieldItem}`}>
+            <div className={`${style.fieldBox} ${style.fieldItem} ${style[errorStyle]}`}>
                 <InputType type={type} id={id} value={value}
                            action={action} disabled={disabled}/>
             </div>

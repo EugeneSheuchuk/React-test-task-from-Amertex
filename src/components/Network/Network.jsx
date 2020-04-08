@@ -70,7 +70,7 @@ const Network = (props) => {
                                      errorText={errorNetworkName} disabled={!enableWifi}/>
                     <div>
                         <label htmlFor='enableWifiSecurity' className={`${style.labelContainer} ${style[disabledStyle]}`}>
-                            Enable wifi:
+                            Enable Wireless Security:
                             <Checkbox id={'enableWifiSecurity'} value={'enableWifiSecurity'}
                                       name={'enableWifiSecurity'} action={onChangeCheckbox}
                                       checked={enableWifiSecurity} disabled={disabledCheckbox}/>

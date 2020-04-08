@@ -13,6 +13,7 @@ const FieldWithSelect = (props) => {
     const star = required ? <span className={style.red}> *</span> : null;
     const disabledStyle = disabled ? 'disabledLabel' : '';
     const disabledArrow = disabled ? 'disabledSvg' : '';
+    const errorStyle = errorText !== '' ? 'errorStyle' : '';
 
     return (
         <div className={style.field}>
@@ -22,10 +23,9 @@ const FieldWithSelect = (props) => {
                     {star}
                 </label>
             </div>
-            <div className={`${style.fiedItem} ${style.fieldSelect}`}>
+            <div className={`${style.fiedItem} ${style.fieldSelect} ${style[errorStyle]}`}>
                 <Select id={id} options={options} value={value}
                         key={uniqueKey} action={action} disabled={disabled}/>
-                <p>{errorText}</p>
             </div>
             <div className={style.fiedItem}>
                 <div className={`${style.fieldArrow} ${style[disabledArrow]}`}
@@ -33,6 +33,7 @@ const FieldWithSelect = (props) => {
                     <Arrow/>
                 </div>
             </div>
+            <p className={style.error}>{errorText}</p>
         </div>
     );
 };
