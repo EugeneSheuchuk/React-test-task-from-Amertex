@@ -2,3 +2,64 @@
     color: gray;
     opacity: 0.5;
 }
+
+.labelContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.labelContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border: 1px solid #c4c6c8;
+    border-radius: 50%;
+}
+
+
+.labelContainer:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.labelContainer input:checked ~ .checkmark {
+    background-color: #1aa8eb;
+    border: none;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.labelContainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.labelContainer .checkmark:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
