@@ -7,10 +7,10 @@ import Checkbox from '../Checkbox/Checkbox';
 import Field from "../Field/Field";
 import Button from "../Button/Button";
 import {connect} from "react-redux";
-import {onSaveData, saveNetFieldValue} from "../../redux/netReducer";
+import {onClearData, onSaveData, saveNetFieldValue} from "../../redux/netReducer";
 
 const Network = (props) => {
-    const {enableWifi, enableWifiSecurity, securityKey} = props.propState;
+    const {enableWifi, enableWifiSecurity, securityKey, networkName} = props.propState;
     let {errorNetworkName, errorSecurityKey} = props.propState;
     if (enableWifi && !enableWifiSecurity) {
         errorSecurityKey = '';
@@ -61,6 +61,7 @@ const Network = (props) => {
                         </label>
                     </div>
                     <FieldWithSelect fieldName={'Wireless Network Name:'} required={true}
+                                     value={networkName}
                                      options={['Please select', 'Free net', 'Cool closed net']}
                                      uniqueKey={'Nets'} action={onChangeSelect} errorText={errorNetworkName}/>
                     <div>
@@ -80,8 +81,7 @@ const Network = (props) => {
             </div>
             <div className={style.footer}>
                 <Button value={'Save'} action={props.saveData}/>
-                <Button value={'Cancel'} action={() => {
-                }}/>
+                <Button value={'Cancel'} action={props.clear}/>
             </div>
         </div>
     );
@@ -97,6 +97,9 @@ const mapDispatchToProps = dispatch => {
         saveData() {
             dispatch(onSaveData());
         },
+        clear() {
+            dispatch(onClearData());
+        }
     };
 };
 

@@ -44,7 +44,6 @@ class IP extends React.Component {
             errorSubnetMask = '';
             errorGateway = '';
         }
-
         return (
             <React.Fragment>
                 <div className={style.choose}>

@@ -1,3 +1,6 @@
+import {CLEAR_ERROR_TEXT, CLEAR_REDUCER_TEXT} from "../assets/helperFunctions";
+import {SAVE_ERROR_TEXT} from "./netReducer";
+
 const initialState = {};
 const template = {
     automaticallyIP: true,
@@ -10,8 +13,7 @@ const template = {
 };
 
 const SAVE_FIELD_VALUE = 'omertex-react/ipReducer/SAVE_FIELD_VALUE';
-const SAVE_ERROR_TEXT = 'omertex-react/SAVE_ERROR_TEXT';
-const CLEAR_ERROR_TEXT = 'omertex-react/CLEAR_ERROR_TEXT';
+
 
 const ipReducer = (state = initialState, action) => {
     let newState;
@@ -42,6 +44,13 @@ const ipReducer = (state = initialState, action) => {
                 };
                 return newState;
 
+            }
+            return state;
+        case CLEAR_REDUCER_TEXT:
+            newState = {...state};
+            if (newState.hasOwnProperty(action.key)) {
+                newState[action.key] = {...template};
+               return newState;
             }
             return state;
         default:

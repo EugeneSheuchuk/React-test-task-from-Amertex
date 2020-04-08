@@ -116,8 +116,14 @@ function checkDNS(obj) {
     return errorObj;
 }
 
+const keys = ['Ethernet_IP', 'Ethernet_DNS', 'Wireless_IP', 'Wireless_DNS', 'NET'];
+export const CLEAR_ERROR_TEXT = 'omertex-react/helperFunctions/CLEAR_ERROR_TEXT';
+export const CLEAR_REDUCER_TEXT = 'omertex-react/helperFunctions/CLEAR_REDUCER_TEXT';
+
 export function clearErrorMessages(dispatch) {
-    const CLEAR_ERROR_TEXT = 'omertex-react/CLEAR_ERROR_TEXT';
-    const keys = ['Ethernet_IP', 'Ethernet_DNS', 'Wireless_IP', 'Wireless_DNS', 'NET'];
     keys.forEach(item => dispatch({type: CLEAR_ERROR_TEXT, key: item}));
+}
+
+export function clearReducersData(dispatch) {
+    keys.forEach(item => dispatch({type: CLEAR_REDUCER_TEXT, key: item}));
 }

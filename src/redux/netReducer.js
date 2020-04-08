@@ -1,4 +1,10 @@
-import {checkData, clearErrorMessages, prepareData} from "../assets/helperFunctions";
+import {
+    checkData,
+    CLEAR_ERROR_TEXT,
+    CLEAR_REDUCER_TEXT,
+    clearErrorMessages, clearReducersData,
+    prepareData
+} from "../assets/helperFunctions";
 
 const initialState = {
     enableWifi: false,
@@ -10,8 +16,8 @@ const initialState = {
 };
 
 const SAVE_FIELD_VALUE = 'omertex-react/netReducer/SAVE_FIELD_VALUE';
-const SAVE_ERROR_TEXT = 'omertex-react/SAVE_ERROR_TEXT';
-const CLEAR_ERROR_TEXT = 'omertex-react/CLEAR_ERROR_TEXT';
+export const SAVE_ERROR_TEXT = 'omertex-react/netReducer/SAVE_ERROR_TEXT';
+
 
 const netReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -37,6 +43,11 @@ const netReducer = (state = initialState, action) => {
                 }
             }
             return state;
+        case CLEAR_REDUCER_TEXT:
+            if (action.key === 'NET') {
+                return {...initialState};
+            }
+            return state;
         default:
             return state;
     }
@@ -60,6 +71,10 @@ export const onSaveData = () => {
         const result = prepareData(getState());
         console.log('result ', result);
     }
+};
+
+export const onClearData = () => {
+    return dispatch => clearReducersData(dispatch);
 };
 
 export default netReducer;
