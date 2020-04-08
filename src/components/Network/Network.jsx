@@ -85,8 +85,8 @@ const Network = (props) => {
                 </div>
             </div>
             <div className={style.footer}>
-                <Button value={'Save'} action={props.saveData}/>
-                <Button value={'Cancel'} action={props.clear}/>
+                <Button value={'Save'} action={props.saveData} styleClassName={'save'}/>
+                <Button value={'Cancel'} action={props.clear} styleClassName={'cancel'}/>
             </div>
         </div>
     );
