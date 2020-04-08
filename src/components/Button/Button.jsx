@@ -6,7 +6,7 @@ const Button = (props) => {
     const {value, action, styleClassName} = props;
     return <input type="button"
                   value={value}
-                  onClick={(e) => action(e)}
+                  onClick={() => action()}
                   className={`${style[styleClassName]}`}/>
 };
 

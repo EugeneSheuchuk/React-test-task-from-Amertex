@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 
 const Checkbox = (props) => {
     const {
-        id, value, name, action, styleClassName} = props;
+        id, value, name, action, styleClassName, checked, disabled = false} = props;
     return <input type='checkbox'
                   id={id}
                   value={value}
                   name={name}
-                  onChange={(e) => action(e)}
-                  className={`${style[styleClassName]}`}/>
+                  onChange={() => action(id)}
+                  className={`${style[styleClassName]}`}
+                  checked={checked}
+                  disabled={disabled}/>
 };
 
 Checkbox.propTypes = {
@@ -19,6 +21,8 @@ Checkbox.propTypes = {
     name: PropTypes.string.isRequired,
     action: PropTypes.func,
     styleClassName: PropTypes.string,
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
 };
 
 export default Checkbox;

@@ -5,21 +5,23 @@ import PropTypes from 'prop-types';
 
 const RadioInput = (props) => {
     const {
-        id, value, name, action, styleClassName} = props;
+        id, value, action, styleClassName, checked = false, disabled = false} = props;
     return <input type='radio'
                   id={id}
                   value={value}
-                  name={name}
-                  onChange={(e) => action(e)}
-                  className={`${style[styleClassName]}`}/>
+                  onChange={() => action(value)}
+                  checked={checked}
+                  className={`${style[styleClassName]}`}
+                  disabled={disabled}/>
 };
 
 RadioInput.propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    name: PropTypes.string.isRequired,
+    value: PropTypes.bool,
     action: PropTypes.func,
     styleClassName: PropTypes.string,
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
 };
 
 export default RadioInput;
