@@ -1,4 +1,32 @@
+@keyframes arrow { 0% {transform:rotate(0deg)}100% { transform:rotate(360deg); } }
+
 .disabledLabel {
     color: gray;
     opacity: 0.5;
+}
+
+.fiedItem {
+    display: inline-block;
+    text-align: center;
+}
+
+.fieldArrow {
+    width: 27px;
+    height: 27px;
+    border: 1px solid black;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 27px;
+    vertical-align: middle;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.fieldArrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+.fieldArrow:hover svg {
+    animation:arrow 1s linear infinite;
 }

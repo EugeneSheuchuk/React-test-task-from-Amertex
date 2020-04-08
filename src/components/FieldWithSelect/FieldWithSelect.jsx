@@ -2,8 +2,8 @@ import React from 'react';
 import style from './FieldWithSelect.module.css';
 import PropTypes from "prop-types";
 import Select from "../Select/Select";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faRedoAlt} from '@fortawesome/free-solid-svg-icons'
+import {ReactComponent as Arrow} from './../../assets/reload-arrow.svg';
+
 
 const FieldWithSelect = (props) => {
     const {
@@ -15,16 +15,18 @@ const FieldWithSelect = (props) => {
 
     return (
         <div className={style.field}>
-            <div className={style.fieldName}>
+            <div className={`${style.fiedItem} ${style.fieldName}`}>
                 <label htmlFor={id} className={`${style[styleClassName]} ${style[disabledStyle]}`}>{text}</label>
             </div>
-            <div>
+            <div className={`${style.fiedItem} ${style.fieldSelect}`}>
                 <Select id={id} options={options} value={value}
                         key={uniqueKey} action={action} disabled={disabled}/>
                 <p>{errorText}</p>
             </div>
-            <div>
-                <FontAwesomeIcon icon={faRedoAlt}/>
+            <div className={style.fiedItem}>
+                <div className={style.fieldArrow} onClick={() => alert('reload...')}>
+                    <Arrow/>
+                </div>
             </div>
         </div>
     );
