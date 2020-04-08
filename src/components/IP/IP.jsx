@@ -66,7 +66,8 @@ class IP extends React.Component {
                         Use the following IP address:
                         <RadioInput id={`SIP-${uniqueKey}`}
                                     value={false} action={this.onClickRadio}
-                                    checked={!automaticallyIP}/>
+                                    checked={!automaticallyIP}
+                                    disabled={disabled}/>
                         <span className={style.checkmark}></span>
                     </label>
                 </div>
