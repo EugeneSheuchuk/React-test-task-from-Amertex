@@ -2,7 +2,7 @@
     padding: 17px;
     background-color: #f1f3f2;
     width: 1316px;
-    height: 663px;
+    min-height: 663px;
 }
 .nets {
     border: 1px solid #bec1c3;

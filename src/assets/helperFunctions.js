@@ -77,23 +77,23 @@ function checkIP(obj) {
     };
     if (obj.IPaddress.trim() === '') {
         errorObj.isError = true;
-        errorObj.errorIPaddress = 'the field cannot be empty';
+        errorObj.errorIPaddress = 'The field cannot be empty';
     } else if (obj.IPaddress.trim().search(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/) !== 0) {
         errorObj.isError = true;
-        errorObj.errorIPaddress = 'not valid field data';
+        errorObj.errorIPaddress = 'Not valid field data';
     }
     if (obj.subnetMask.trim() === '') {
         errorObj.isError = true;
-        errorObj.errorSubnetMask = 'the field cannot be empty';
+        errorObj.errorSubnetMask = 'The field cannot be empty';
     } else if (obj.subnetMask.trim().search(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/) !== 0) {
         errorObj.isError = true;
-        errorObj.errorSubnetMask = 'not valid field data';
+        errorObj.errorSubnetMask = 'Not valid field data';
     }
     if (obj.gateway.trim() === '') {
         return errorObj;
     } else if (obj.gateway.trim().search(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/) !== 0) {
         errorObj.isError = true;
-        errorObj.errorGateway = 'not valid field data';
+        errorObj.errorGateway = 'Not valid field data';
     }
     return errorObj;
 }

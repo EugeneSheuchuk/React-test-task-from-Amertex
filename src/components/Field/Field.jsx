@@ -21,8 +21,8 @@ const Field = (props) => {
             <div className={`${style.fieldBox} ${style.fieldItem}`}>
                 <InputType type={type} id={id} value={value}
                            action={action} disabled={disabled}/>
-                <p className={style.errorText}>{errorText}</p>
             </div>
+            <p className={style.errorText}>{errorText}</p>
         </div>
     );
 };

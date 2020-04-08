@@ -10,13 +10,17 @@ const FieldWithSelect = (props) => {
         fieldName, id = null, required = false, options, value,
         styleClassName, uniqueKey, action, errorText = '', disabled
     } = props;
-    const text = `${fieldName}${required ? ' *' : ''}`;
+    const star = required ? <span className={style.red}> *</span> : null;
     const disabledStyle = disabled ? 'disabledLabel' : '';
+    const disabledArrow = disabled ? 'disabledSvg' : '';
 
     return (
         <div className={style.field}>
             <div className={`${style.fiedItem} ${style.fieldName}`}>
-                <label htmlFor={id} className={`${style[styleClassName]} ${style[disabledStyle]}`}>{text}</label>
+                <label htmlFor={id} className={`${style[styleClassName]} ${style[disabledStyle]}`}>
+                    {fieldName}
+                    {star}
+                </label>
             </div>
             <div className={`${style.fiedItem} ${style.fieldSelect}`}>
                 <Select id={id} options={options} value={value}
@@ -24,7 +28,8 @@ const FieldWithSelect = (props) => {
                 <p>{errorText}</p>
             </div>
             <div className={style.fiedItem}>
-                <div className={style.fieldArrow} onClick={() => alert('reload...')}>
+                <div className={`${style.fieldArrow} ${style[disabledArrow]}`}
+                     onClick={() => alert('reloading...')}>
                     <Arrow/>
                 </div>
             </div>

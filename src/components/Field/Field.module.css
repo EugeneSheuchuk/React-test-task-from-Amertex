@@ -21,9 +21,21 @@
 .fieldBox input {
     height: 35px;
     width: 100%;
-    border: 1px solid #d6d7e0;
+    border: 1px solid #797171;
     background-color: white;
 }
+
+.fieldBox input:disabled {
+    border-color: #d6d7e0;
+}
+
 .red {
     color: red;
+}
+.errorText {
+    padding: 5px;
+    color: lightcoral;
+    text-align: right;
+    position: relative;
+    top: -5px;
 }
