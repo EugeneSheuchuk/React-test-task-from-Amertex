@@ -2,30 +2,38 @@ import React from 'react';
 import style from './FieldWithSelect.module.css';
 import PropTypes from "prop-types";
 import Select from "../Select/Select";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faRedoAlt} from '@fortawesome/free-solid-svg-icons'
+import {ReactComponent as Arrow} from './../../assets/reload-arrow.svg';
+
 
 const FieldWithSelect = (props) => {
     const {
         fieldName, id = null, required = false, options, value,
         styleClassName, uniqueKey, action, errorText = '', disabled
     } = props;
-    const text = `${fieldName}${required ? ' *' : ''}`;
+    const star = required ? <span className={style.red}> *</span> : null;
     const disabledStyle = disabled ? 'disabledLabel' : '';
+    const disabledArrow = disabled ? 'disabledSvg' : '';
+    const errorStyle = errorText !== '' ? 'errorStyle' : '';
 
     return (
         <div className={style.field}>
-            <div className={style.fieldName}>
-                <label htmlFor={id} className={`${style[styleClassName]} ${style[disabledStyle]}`}>{text}</label>
+            <div className={`${style.fiedItem} ${style.fieldName}`}>
+                <label htmlFor={id} className={`${style[styleClassName]} ${style[disabledStyle]}`}>
+                    {fieldName}
+                    {star}
+                </label>
             </div>
-            <div>
+            <div className={`${style.fiedItem} ${style.fieldSelect} ${style[errorStyle]}`}>
                 <Select id={id} options={options} value={value}
                         key={uniqueKey} action={action} disabled={disabled}/>
-                <p>{errorText}</p>
             </div>
-            <div>
-                <FontAwesomeIcon icon={faRedoAlt}/>
+            <div className={style.fiedItem}>
+                <div className={`${style.fieldArrow} ${style[disabledArrow]}`}
+                     onClick={() => alert('reloading...')}>
+                    <Arrow/>
+                </div>
             </div>
+            <p className={style.error}>{errorText}</p>
         </div>
     );
 };

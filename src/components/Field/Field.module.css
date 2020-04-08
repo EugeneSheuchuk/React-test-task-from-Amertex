@@ -2,3 +2,47 @@
     color: gray;
     opacity: 0.5;
 }
+.fieldItem {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.fieldName {
+    text-align: right;
+    width: 43%;
+    font-size: 14px;
+}
+
+.fieldBox {
+    width: 57%;
+    padding-left: 15px;
+}
+.fieldBox input {
+    height: 35px;
+    width: 100%;
+    border: 1px solid #797171;
+    background-color: white;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.errorStyle input {
+    border: 1px solid lightcoral;
+}
+
+.fieldBox input:disabled {
+    border-color: #d6d7e0;
+}
+
+.red {
+    color: red;
+}
+.errorText {
+    font-size: 14px;
+    padding: 5px;
+    color: lightcoral;
+    text-align: right;
+    position: relative;
+    top: -5px;
+}

@@ -39,17 +39,17 @@ const DNS = (props) => {
     return (
         <React.Fragment>
             <div className={style.choose}>
-                <label htmlFor={`ADNS-${uniqueKey}`} className={`${style[disabledStyle]}`}>Obtain DNS server address automatically
+                <label htmlFor={`ADNS-${uniqueKey}`} className={`${style.labelContainer} ${style[disabledStyle]}`}>Obtain DNS server address automatically
                     <RadioInput name={'automatically_DNS_server'} id={`ADNS-${uniqueKey}`} value={true}
                                 action={onClickRadio} checked={AutoDNS} disabled={disabled}/>
-                    <span></span>
+                    <span className={style.checkmark}></span>
                 </label>
             </div>
             <div className={style.choose}>
-                <label htmlFor={`SDNS-${uniqueKey}`} className={`${style[disabledStyle]}`}>Use the following DNS server address:
+                <label htmlFor={`SDNS-${uniqueKey}`} className={`${style.labelContainer} ${style[disabledStyle]}`}>Use the following DNS server address:
                     <RadioInput name={'automatically_DNS_server'} id={`SDNS-${uniqueKey}`} value={false}
                                 action={onClickRadio} checked={!AutoDNS} disabled={disabled}/>
-                    <span></span>
+                    <span className={style.checkmark}></span>
                 </label>
             </div>
             <Field type='text' fieldName={'Preferred DNS server:'} id={`P_DNS_server_${uniqueKey}`} value={pDNS}

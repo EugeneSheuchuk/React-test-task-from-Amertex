@@ -52,22 +52,23 @@ class IP extends React.Component {
         return (
             <React.Fragment>
                 <div className={style.choose}>
-                    <label htmlFor={`AIP-${uniqueKey}`} className={`${style['container']} ${style[disabledStyle]}`}>
+                    <label htmlFor={`AIP-${uniqueKey}`} className={`${style.labelContainer} ${style[disabledStyle]}`}>
                         Obtain an IP address automatically (DHCP/BootP)
                         <RadioInput id={`AIP-${uniqueKey}`}
                                     value={true} action={this.onClickRadio}
                                     checked={automaticallyIP}
                                     disabled={disabled}/>
-                        <span className='checkmark'></span>
+                        <span className={style.checkmark}></span>
                     </label>
                 </div>
                 <div className={style.choose}>
-                    <label htmlFor={`SIP-${uniqueKey}`} className={`${style['container']} ${style[disabledStyle]}`}>
+                    <label htmlFor={`SIP-${uniqueKey}`} className={`${style.labelContainer} ${style[disabledStyle]}`}>
                         Use the following IP address:
                         <RadioInput id={`SIP-${uniqueKey}`}
                                     value={false} action={this.onClickRadio}
-                                    checked={!automaticallyIP}/>
-                        <span className='checkmark'></span>
+                                    checked={!automaticallyIP}
+                                    disabled={disabled}/>
+                        <span className={style.checkmark}></span>
                     </label>
                 </div>
                 <Field type='text' fieldName={'IP address:'} id={`IP_address_${uniqueKey}`}

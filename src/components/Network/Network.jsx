@@ -60,7 +60,7 @@ const Network = (props) => {
                             Enable wifi:
                             <Checkbox id={'enableWifi'} value={'enableWifi'}
                                       name={'enableWifi'} action={onChangeCheckbox} checked={enableWifi}/>
-                            <span className='checkmark'></span>
+                            <span className={style.checkmark}></span>
                         </label>
                     </div>
                     <FieldWithSelect fieldName={'Wireless Network Name:'} required={true}
@@ -70,11 +70,11 @@ const Network = (props) => {
                                      errorText={errorNetworkName} disabled={!enableWifi}/>
                     <div>
                         <label htmlFor='enableWifiSecurity' className={`${style.labelContainer} ${style[disabledStyle]}`}>
-                            Enable wifi:
+                            Enable Wireless Security:
                             <Checkbox id={'enableWifiSecurity'} value={'enableWifiSecurity'}
                                       name={'enableWifiSecurity'} action={onChangeCheckbox}
                                       checked={enableWifiSecurity} disabled={disabledCheckbox}/>
-                            <span className='checkmark'></span>
+                            <span className={style.checkmark}></span>
                         </label>
                         <Field type='password' fieldName={'Security Key:'} required={true}
                                value={securityKey} action={typeField}
@@ -85,8 +85,8 @@ const Network = (props) => {
                 </div>
             </div>
             <div className={style.footer}>
-                <Button value={'Save'} action={props.saveData}/>
-                <Button value={'Cancel'} action={props.clear}/>
+                <Button value={'Save'} action={props.saveData} styleClassName={'save'}/>
+                <Button value={'Cancel'} action={props.clear} styleClassName={'cancel'}/>
             </div>
         </div>
     );
