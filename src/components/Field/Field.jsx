@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 import InputType from "../InputType/InputType";
 
 const Field = (props) => {
-    const {type, fieldName, id = null, value, action, required = false, styleClassName} = props;
+    const {
+        type, fieldName, id = null, value, action, required = false,
+        styleClassName, errorText = ''
+    } = props;
     const text = `${fieldName}${required ? ' *' : ''}`;
     return (
         <div className={style.field}>
@@ -13,6 +16,7 @@ const Field = (props) => {
             </div>
             <div>
                 <InputType type={type} id={id} value={value} action={action}/>
+                <p className={style.errorText}>{errorText}</p>
             </div>
         </div>
     );
@@ -25,6 +29,7 @@ Field.propTypes = {
     action: PropTypes.func,
     required: PropTypes.bool,
     styleClassName: PropTypes.string,
+    errorText: PropTypes.string,
 };
 
 export default Field;

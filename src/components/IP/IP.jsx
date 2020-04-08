@@ -38,6 +38,12 @@ class IP extends React.Component {
     render() {
         const {uniqueKey} = this.props;
         const {automaticallyIP, IPaddress, subnetMask, gateway} = this.props.propState;
+        let {errorIPaddress, errorSubnetMask, errorGateway} = this.props.propState;
+        if (automaticallyIP) {
+            errorIPaddress = '';
+            errorSubnetMask = '';
+            errorGateway = '';
+        }
 
         return (
             <React.Fragment>
@@ -60,11 +66,11 @@ class IP extends React.Component {
                     </label>
                 </div>
                 <Field type='text' fieldName={'IP address:'} id={`IP_address_${uniqueKey}`}
-                       value={IPaddress} action={this.typeField} required={true}/>
+                       value={IPaddress} action={this.typeField} required={true} errorText={errorIPaddress}/>
                 <Field type='text' fieldName={'Subnet Mask:'} id={`Subnet_Mask_${uniqueKey}`}
-                       value={subnetMask} action={this.typeField} required={true}/>
+                       value={subnetMask} action={this.typeField} required={true} errorText={errorSubnetMask}/>
                 <Field type='text' fieldName={'Default Gateway:'} id={`Default_Gateway_${uniqueKey}`}
-                       value={gateway} action={this.typeField} required={false}/>
+                       value={gateway} action={this.typeField} required={false} errorText={errorGateway}/>
             </React.Fragment>
         );
     }

@@ -11,6 +11,13 @@ import {onSaveData, saveNetFieldValue} from "../../redux/netReducer";
 
 const Network = (props) => {
     const {enableWifi, enableWifiSecurity, securityKey} = props.propState;
+    let {errorNetworkName, errorSecurityKey} = props.propState;
+    if (enableWifi && !enableWifiSecurity) {
+        errorSecurityKey = '';
+    } else if (!enableWifi) {
+        errorNetworkName = '';
+        errorSecurityKey = '';
+    }
 
     const onChangeCheckbox = (id) => {
         switch (id) {
@@ -55,7 +62,7 @@ const Network = (props) => {
                     </div>
                     <FieldWithSelect fieldName={'Wireless Network Name:'} required={true}
                                      options={['Please select', 'Free net', 'Cool closed net']}
-                                     uniqueKey={'Nets'} action={onChangeSelect}/>
+                                     uniqueKey={'Nets'} action={onChangeSelect} errorText={errorNetworkName}/>
                     <div>
                         <label htmlFor='enableWifiSecurity' className='container'>
                             Enable wifi:
@@ -65,7 +72,7 @@ const Network = (props) => {
                             <span className='checkmark'></span>
                         </label>
                         <Field type='password' fieldName={'Security Key:'} required={true}
-                               value={securityKey} action={typeField}/>
+                               value={securityKey} action={typeField} errorText={errorSecurityKey}/>
                     </div>
                     <IP uniqueKey={'Wireless_IP'}/>
                     <DNS uniqueKey={'Wireless_DNS'}/>
@@ -73,7 +80,8 @@ const Network = (props) => {
             </div>
             <div className={style.footer}>
                 <Button value={'Save'} action={props.saveData}/>
-                <Button value={'Cancel'} action={() => {}}/>
+                <Button value={'Cancel'} action={() => {
+                }}/>
             </div>
         </div>
     );
@@ -87,7 +95,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(saveNetFieldValue(field, value));
         },
         saveData() {
-          dispatch(onSaveData());
+            dispatch(onSaveData());
         },
     };
 };

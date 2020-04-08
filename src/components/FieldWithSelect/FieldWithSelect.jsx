@@ -6,7 +6,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faRedoAlt} from '@fortawesome/free-solid-svg-icons'
 
 const FieldWithSelect = (props) => {
-    const {fieldName, id = null, required = false, options, styleClassName, uniqueKey, action} = props;
+    const {fieldName, id = null, required = false, options,
+        styleClassName, uniqueKey, action, errorText = ''} = props;
     const text = `${fieldName}${required ? ' *' : ''}`;
     return (
         <div className={style.field}>
@@ -15,6 +16,7 @@ const FieldWithSelect = (props) => {
             </div>
             <div>
                 <Select id={id} options={options} key={uniqueKey} action={action}/>
+                <p>{errorText}</p>
             </div>
             <div>
                 <FontAwesomeIcon icon={faRedoAlt}/>
@@ -31,6 +33,7 @@ FieldWithSelect.propTypes = {
     styleClassName: PropTypes.string,
     uniqueKey: PropTypes.string.isRequired,
     action: PropTypes.func,
+    errorText: PropTypes.string,
 };
 
 export default FieldWithSelect;

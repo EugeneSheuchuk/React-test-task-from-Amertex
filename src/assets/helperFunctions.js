@@ -1,17 +1,26 @@
 export const checkData = (state) => {
     const error = {};
     if (!state.IP['Ethernet_IP'].automaticallyIP) {
-        error.errorEthernetIP = {...checkIP({...state.IP['Ethernet_IP']})};
+        error['Ethernet_IP'] = {...checkIP({...state.IP['Ethernet_IP']})};
     }
     if (!state.DNS['Ethernet_DNS'].AutoDNS) {
-        error.errorEthernetDNS = { ...checkDNS({...state.DNS['Ethernet_DNS']}) };
+        error['Ethernet_DNS'] = {...checkDNS({...state.DNS['Ethernet_DNS']})};
     }
     if (state.NET.enableWifi) {
+        if (state.NET.networkName.trim() === '' ||
+            state.NET.networkName.trim() === 'Please select') {
+            error.NET = {isError: true, errorNetworkName: 'No network selected'};
+        }
+        if (state.NET.enableWifiSecurity) {
+            if (state.NET.securityKey.trim() === '') {
+                error.NET = {isError: true, errorSecurityKey: 'The security key cannot be empty or contain only space(s)'};
+            }
+        }
         if (!state.IP['Wireless_IP'].automaticallyIP) {
-            error.errorWirelessIP = { ...checkIP({...state.IP['Wireless_IP']}) };
+            error['Wireless_IP'] = {...checkIP({...state.IP['Wireless_IP']})};
         }
         if (!state.DNS['Wireless_DNS'].AutoDNS) {
-            error.errorWirelessDNS = { ...checkDNS({...state.DNS['Wireless_DNS']}) };
+            error['Wireless_DNS'] = {...checkDNS({...state.DNS['Wireless_DNS']})};
         }
     }
     return error;
@@ -80,7 +89,7 @@ function checkIP(obj) {
         return errorObj;
     } else if (obj.gateway.trim().search(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/) !== 0) {
         errorObj.isError = true;
-        errorObj.gateway = 'not valid field data';
+        errorObj.errorGateway = 'not valid field data';
     }
     return errorObj;
 }
@@ -88,21 +97,27 @@ function checkIP(obj) {
 function checkDNS(obj) {
     const errorObj = {
         isError: false,
-        pDNS: '',
-        aDNS: '',
+        errorpDNS: '',
+        erroraDNS: '',
     };
     if (obj.pDNS.trim() === '') {
         errorObj.isError = true;
-        errorObj.pDNS = 'the field cannot be empty';
+        errorObj.errorpDNS = 'the field cannot be empty';
     } else if (obj.pDNS.trim().search(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/) !== 0) {
         errorObj.isError = true;
-        errorObj.pDNS = 'not valid field data';
+        errorObj.errorpDNS = 'not valid field data';
     }
     if (obj.aDNS.trim() === '') {
         return errorObj;
     } else if (obj.aDNS.trim().search(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/) !== 0) {
         errorObj.isError = true;
-        errorObj.aDNS = 'not valid field data';
+        errorObj.erroraDNS = 'not valid field data';
     }
     return errorObj;
+}
+
+export function clearErrorMessages(dispatch) {
+    const CLEAR_ERROR_TEXT = 'omertex-react/CLEAR_ERROR_TEXT';
+    const keys = ['Ethernet_IP', 'Ethernet_DNS', 'Wireless_IP', 'Wireless_DNS', 'NET'];
+    keys.forEach(item => dispatch({type: CLEAR_ERROR_TEXT, key: item}));
 }
