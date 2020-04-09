@@ -59,7 +59,6 @@
     border: 1px solid #bec1c3;
 }
 
-
 .labelContainer:hover input ~ .checkmark {
     background-color: #ccc;
 }
@@ -70,11 +69,11 @@
 
 .labelContainer input:checked ~ .checkmark {
     background-color: #1aa8eb;
-    border: none
+    border: none;
 }
 
 .checkmark:after {
-    content: "";
+    content: '';
     position: absolute;
     display: none;
 }

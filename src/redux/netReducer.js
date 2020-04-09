@@ -2,9 +2,10 @@ import {
     checkData,
     CLEAR_ERROR_TEXT,
     CLEAR_REDUCER_TEXT,
-    clearErrorMessages, clearReducersData,
-    prepareData
-} from "../assets/helperFunctions";
+    clearErrorMessages,
+    clearReducersData,
+    prepareData,
+} from '../assets/helperFunctions';
 
 const initialState = {
     enableWifi: false,
@@ -17,7 +18,6 @@ const initialState = {
 
 export const SAVE_FIELD_VALUE = 'omertex-react/netReducer/SAVE_FIELD_VALUE';
 export const SAVE_ERROR_TEXT = 'omertex-react/netReducer/SAVE_ERROR_TEXT';
-
 
 const netReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -34,7 +34,7 @@ const netReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     ...action.errors,
-                }
+                };
             }
             return state;
         case CLEAR_ERROR_TEXT:
@@ -43,12 +43,12 @@ const netReducer = (state = initialState, action) => {
                     ...state,
                     errorNetworkName: '',
                     errorSecurityKey: '',
-                }
+                };
             }
             return state;
         case CLEAR_REDUCER_TEXT:
             if (action.key === 'NET') {
-                return {...initialState};
+                return { ...initialState };
             }
             return state;
         default:
@@ -56,7 +56,12 @@ const netReducer = (state = initialState, action) => {
     }
 };
 
-export const saveFieldValue = (key, field, value) => ({type: SAVE_FIELD_VALUE, key, field, value});
+export const saveFieldValue = (key, field, value) => ({
+    type: SAVE_FIELD_VALUE,
+    key,
+    field,
+    value,
+});
 
 export const onSaveData = () => {
     return (dispatch, getState) => {
@@ -67,17 +72,17 @@ export const onSaveData = () => {
             if (error[key].isError) {
                 isErrorMessage = true;
                 delete error[key].isError;
-                dispatch({type: SAVE_ERROR_TEXT, key, errors: error[key]});
+                dispatch({ type: SAVE_ERROR_TEXT, key, errors: error[key] });
             }
         }
         if (isErrorMessage) return;
         const result = prepareData(getState());
         console.log('result ', result);
-    }
+    };
 };
 
 export const onClearData = () => {
-    return dispatch => clearReducersData(dispatch);
+    return (dispatch) => clearReducersData(dispatch);
 };
 
 export default netReducer;

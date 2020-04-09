@@ -2,17 +2,26 @@ import React from 'react';
 import style from './Radio.module.css';
 import PropTypes from 'prop-types';
 
-
 const RadioInput = (props) => {
     const {
-        id, value, action, styleClassName, checked = false, disabled = false} = props;
-    return <input type='radio'
-                  id={id}
-                  value={value}
-                  onChange={() => action(value)}
-                  checked={checked}
-                  className={`${style[styleClassName]}`}
-                  disabled={disabled}/>
+        id,
+        value,
+        action,
+        styleClassName,
+        checked = false,
+        disabled = false,
+    } = props;
+    return (
+        <input
+            type="radio"
+            id={id}
+            value={value}
+            onChange={() => action(value)}
+            checked={checked}
+            className={`${style[styleClassName]}`}
+            disabled={disabled}
+        />
+    );
 };
 
 RadioInput.propTypes = {

@@ -5,7 +5,7 @@ import Network from './components/Network/Network';
 function App() {
     return (
         <div className={style.appContainer}>
-            <Network/>
+            <Network />
         </div>
     );
 }

@@ -1,4 +1,11 @@
-@keyframes arrow { 0% {transform:rotate(0deg)}100% { transform:rotate(360deg); } }
+@keyframes arrow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .field {
     margin-bottom: 10px;
@@ -67,7 +74,7 @@
 }
 
 .fieldArrow:hover svg {
-    animation:arrow 1s linear infinite;
+    animation: arrow 1s linear infinite;
 }
 .red {
     color: red;

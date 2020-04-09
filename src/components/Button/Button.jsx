@@ -3,11 +3,15 @@ import style from './Button.module.css';
 import PropTypes from 'prop-types';
 
 const Button = (props) => {
-    const {value, action, styleClassName} = props;
-    return <input type="button"
-                  value={value}
-                  onClick={() => action()}
-                  className={`${style[styleClassName]}`}/>
+    const { value, action, styleClassName } = props;
+    return (
+        <input
+            type="button"
+            value={value}
+            onClick={() => action()}
+            className={`${style[styleClassName]}`}
+        />
+    );
 };
 
 Button.propTypes = {

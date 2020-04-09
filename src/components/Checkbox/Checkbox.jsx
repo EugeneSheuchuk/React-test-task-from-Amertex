@@ -4,15 +4,26 @@ import PropTypes from 'prop-types';
 
 const Checkbox = (props) => {
     const {
-        id, value, name, action, styleClassName, checked, disabled = false} = props;
-    return <input type='checkbox'
-                  id={id}
-                  value={value}
-                  name={name}
-                  onChange={() => action(id)}
-                  className={`${style[styleClassName]}`}
-                  checked={checked}
-                  disabled={disabled}/>
+        id,
+        value,
+        name,
+        action,
+        styleClassName,
+        checked,
+        disabled = false,
+    } = props;
+    return (
+        <input
+            type="checkbox"
+            id={id}
+            value={value}
+            name={name}
+            onChange={() => action(id)}
+            className={`${style[styleClassName]}`}
+            checked={checked}
+            disabled={disabled}
+        />
+    );
 };
 
 Checkbox.propTypes = {

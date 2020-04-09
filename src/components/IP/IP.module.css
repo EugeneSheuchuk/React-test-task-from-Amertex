@@ -27,7 +27,6 @@
     border-radius: 50%;
 }
 
-
 .labelContainer:hover input ~ .checkmark {
     background-color: #ccc;
 }
@@ -42,7 +41,7 @@
 }
 
 .checkmark:after {
-    content: "";
+    content: '';
     position: absolute;
     display: none;
 }

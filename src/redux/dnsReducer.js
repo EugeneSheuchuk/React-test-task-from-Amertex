@@ -1,5 +1,8 @@
-import {CLEAR_ERROR_TEXT, CLEAR_REDUCER_TEXT} from "../assets/helperFunctions";
-import {SAVE_ERROR_TEXT, SAVE_FIELD_VALUE} from "./netReducer";
+import {
+    CLEAR_ERROR_TEXT,
+    CLEAR_REDUCER_TEXT,
+} from '../assets/helperFunctions';
+import { SAVE_ERROR_TEXT, SAVE_FIELD_VALUE } from './netReducer';
 
 const initialState = {};
 const template = {
@@ -10,29 +13,35 @@ const template = {
     erroraDNS: '',
 };
 
-//const SAVE_FIELD_VALUE = 'omertex-react/dnsReducer/SAVE_FIELD_VALUE';
-
-
 const dnsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case SAVE_FIELD_VALUE:
-            newState = {...state};
+            newState = { ...state };
             if (!newState.hasOwnProperty(action.key)) {
-                newState[action.key] = {...template, [action.field]: action.value};
+                newState[action.key] = {
+                    ...template,
+                    [action.field]: action.value,
+                };
             } else {
-                newState[action.key] = {...newState[action.key], [action.field]: action.value};
+                newState[action.key] = {
+                    ...newState[action.key],
+                    [action.field]: action.value,
+                };
             }
             return newState;
         case SAVE_ERROR_TEXT:
-            newState = {...state};
+            newState = { ...state };
             if (newState.hasOwnProperty(action.key)) {
-                newState[action.key] = {...newState[action.key], ...action.errors};
+                newState[action.key] = {
+                    ...newState[action.key],
+                    ...action.errors,
+                };
                 return newState;
             }
             return state;
         case CLEAR_ERROR_TEXT:
-            newState = {...state};
+            newState = { ...state };
             if (newState.hasOwnProperty(action.key)) {
                 newState[action.key] = {
                     ...newState[action.key],
@@ -43,9 +52,9 @@ const dnsReducer = (state = initialState, action) => {
             }
             return state;
         case CLEAR_REDUCER_TEXT:
-            newState = {...state};
+            newState = { ...state };
             if (newState.hasOwnProperty(action.key)) {
-                newState[action.key] = {...template};
+                newState[action.key] = { ...template };
                 return newState;
             }
             return state;
@@ -53,8 +62,5 @@ const dnsReducer = (state = initialState, action) => {
             return state;
     }
 };
-
-//export const saveFieldValue = (key, field, value) => ({type: SAVE_FIELD_VALUE, key, field, value});
-
 
 export default dnsReducer;
